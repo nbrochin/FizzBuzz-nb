@@ -1,57 +1,42 @@
 $(document).ready(function () {
-for (var i = 1; i <=100 ; i++) {
 
-if (i % 3 !== 0 && i % 5 !== 0) {
- $('.table2 tr').append(i);
-}
-if (i % 3 == 0) {
- $('.table2 tr').append(' fizz');
-}
-if (i % 5 == 0) {
- $('.table2 tr').append('buzz ');
-}
-}
+    $("#fizzbuzz").submit(function (event) {
+        var start = parseInt($("#start").val());
+        var finish = parseInt($("#finish").val());
 
-$('.display-container').prepend('<h1><span class="list-title">FizzBuzz Output</span></h1>');
+        // check that the input values are numbers
+        if (!isNaN(start) && !isNaN(finish)) {
+            // loop through numbers
+            var i; for (i = start; i <= finish; i++) {
 
+                if (i % 3 === 0 && i % 5 === 0) {
+                    $("#output tbody tr:last-child").append("<td class='fizzbuzz'>FizzBuzz</td>");
+                } else if (i % 3 === 0) {
+                    $("#output tbody tr:last-child").append("<td class='fizz'>Fizz</td>");
+                } else if (i % 5 === 0) {
+                    $("#output tbody tr:last-child").append("<td class='buzz'>Buzz</td>");
+                } else {
+                    $("#output tbody tr:last-child").append("<td class='regular'>" + i + "</td>");
+                }
+                if (i % 3 === 0 && i % 5 === 0) {
+                   $("#output tbody").append("<tr></tr>")
+                 }
+            }
+            $("#output span").fadeIn(400);
+        } else {
+            // if the inputs are not valid numbers
+            $("#error").append("<p class='error'>Please enter a valid number</p>");
+        }
+        // prevent form submission
+        return false;
+    });
 
-// when the listItemForm is submitted
-// prevent the form from submitting naturally
-// pull the data out of the fields
-// reset the form
-// re-focus the first item in the form
-// create HTML string representing a new TR
-// append that TR to the table
-$('#listItemForm').submit(function(event){
-    event.preventDefault();
-    var itemName = $('#itemName').val();
-    var category = $('#category').val();
-    var qty = $('#quantity').val();
-    var qtyType = $('#qtyType').val();
-    $('#listItemForm')[0].reset();
-    $('#itemName').focus();
+    // empty the output & error divs
+    $('input').on('focus', function () {
+        $("#output span").fadeOut(300, function () {
+            $("#output").empty();
+        });
+        
+    });
 
-    var html='<tr class="item">'+
-              '<td> <input class="checkItem" type="checkbox"></td>'+
-                  '<td><span class="itemName">'+i+'</span></td>'+
-                    '<td>'+'<span class="'+category+'">'+category+'</span>'+
-                  '</td>'+
-                  '<td><span><b>'+qty+'</b></span></td>'+
-                  '<td><span class="quantity-new">'+qtyType+'</span></td>'+
-                  '<td><span class="remove fa fa-minus-circle"></span></td>'+
-                '</tr>';
-    $('table.table2 tbody').append(html);
-});
-
-
-// var multipleThree = (i % 3 = 0 )
-// var multipleFive = (i % 5 = 0 )
-// start integer (i) count at 1
-// increase by one for each loop as long as i <=100
-// if not = multipleThree or multipleFive
-//  then print i
-// else print "Fizz" if multipleThree
-// else print "Buzz" if multipleFive
-
-  
-});
+}); // end ready
