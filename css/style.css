@@ -57,7 +57,7 @@ header {
 	padding: 22px 0;
     border-bottom: 1px solid gray;
     width:100%;
-    background-color: #fc8834;
+    background-color: #525e06;
     margin-bottom: 24px;
 }
 
@@ -158,19 +158,8 @@ footer .col-1, .col-2, .col-3 {
 	color: #aaaaaa;
 }
 
-span {
-    width: 80px;
-    padding: 10px;
-    margin: 5px;
-    float: left;
-    text-align: center;
-    background-color: #cccccc;
-    display: none;
-    color: white;
-}
-
 .error {
-    color: firebrick;
+    color: blue;
 }
 
 input:focus::-webkit-input-placeholder { color:transparent; }
